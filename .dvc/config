@@ -1,0 +1,5 @@
+[core]
+    remote = local-store
+    autostage = true
+['remote "local-store"']
+    url = /home/f0x-tr0t/Documents/10X/
