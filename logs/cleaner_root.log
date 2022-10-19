@@ -1,0 +1,5 @@
+[2022-10-19 22:35:20,346] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-19 23:00:33,492] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-19 23:00:33,646] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
