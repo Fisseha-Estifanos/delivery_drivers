@@ -1,46 +1,59 @@
 """
-A script to clean data.
+A script to visualize data.
 """
 
 # imports
 import os
 import logging
 import pandas as pd
-import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import plotly.express as px
 import defaults as defs
-from sklearn.cluster import KMeans
-from scipy.spatial.distance import cdist
-from sklearn import preprocessing
+# import plotly.graph_objects as go
+# from plotly.subplots import make_subplots
 
 
-class dataCleaner():
+class dataVisualizer():
     """
-    A data cleaner class.
+    A data visualizer class.
     """
     def __init__(self, fromThe: str) -> None:
         """
-        The data cleaner initializer
+        The data visualizer initializer
 
         Parameters
         =--------=
         fromThe: string
-            The file importing the data cleaner
+            The file importing the data visualizer
 
         Returns
         =-----=
         None: nothing
-            This will return nothing, it just sets up the data cleaner
+            This will return nothing, it just sets up the data visualizer
             script.
         """
         try:
             # setting up logger
             self.logger = self.setup_logger(defs.log_path +
-                                            'cleaner_root.log')
-            self.logger.info('\n    #####-->    Data cleaner logger for ' +
+                                            'visualizer_root.log')
+            self.logger.info('\n    #####-->    Data visualizer logger for ' +
                              f'{fromThe}    <--#####\n')
-            print('Data cleaner in action')
+            print('Data visualizer in action')
         except Exception as e:
             print(e)
+
+        # setting up seaborn styles
+        # pals = ['deep', 'muted', 'bright', 'pastel', 'dark', 'colorblind']
+        # sns.color_palette(palette='pastel')
+        # TODO: remove any other color
+        sns.set_theme(style="darkgrid")
+        # TODO: add try catch to all visualizer functions
+        # TODO: add comments to all visualizer functions
+        # TODO: modify all log messages properly
+        # TODO: add save_as parameter just like the plot_count function for
+        # all functions
+        # TODO: PEP8
 
     def setup_logger(self, log_path: str) -> logging.Logger:
         """
@@ -91,863 +104,209 @@ class dataCleaner():
             # return the logger object
             return logger
 
-    def remove_unwanted_cols(self, df: pd.DataFrame,
-                             cols: list) -> pd.DataFrame:
+    # TODO : add the name and things from last weeks pie plot function
+    def plot_pie(self, df: pd.DataFrame, column: str, title: str = '',
+                 largest: int = 10, save_as: str = '') -> None:
         """
-        A function to remove unwanted features from a DataFrame
+        A function to plot pie charts
 
         Parameters
         =--------=
-        df: pandas dataframe
-            The data frame containing all the data
-        cols: list
-            The unwanted features lists
-
-        Returns
-        =-----=
-        df
-            The dataframe rid of the unwanted cols
-        """
-        try:
-            for col in cols:
-                df = df[df.columns.drop(list(df.filter(regex=col)))]
-                self.logger.info(f'feature: {col} removed successfully')
-                print(f'feature: {col} removed successfully')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    def percent_missing(self, df: pd.DataFrame) -> None:
-        """
-        A function telling how many missing values exist or better still
-        what is the % of missing values in the dataset?
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The data frame to calculate the missing values from
 
         Returns
         =-----=
         None: nothing
-            Just prints the missing value percentage
+            Only plots the plot
         """
-        try:
-            # Calculate total number of cells in dataframe
-            totalCells = np.product(df.shape)
+        # TODO : resolve this fig variable it is not being used
+        # fig = plt.figure(figsize=(10, 10))
+        col = df[column].value_counts().nlargest(n=largest)
 
-            # Count number of missing values per feature
-            missingCount = df.isnull().sum()
+        data = col.values
+        labels = col.keys()
 
-            # Calculate total number of missing values
-            totalMissing = missingCount.sum()
+        last_num = len(data)
 
-            # Calculate percentage of missing values
-            print("The dataset contains " +
-                  f"{round(((totalMissing/totalCells)*100), 10)} " +
-                  "% missing values")
-            self.logger.info("The dataset contains " +
-                             f"{round(((totalMissing/totalCells)*100), 10)} " +
-                             "% missing values")
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
+        colors = sns.color_palette('muted')[0:last_num]
 
-    # TODO: compare this fill method with others
-    def fillWithMedian(self, df: pd.DataFrame, cols: list) -> pd.DataFrame:
+        plt.pie(data, labels=labels, colors=colors, autopct='%.000f%%')
+        if title == '':
+            plt.title(f'{column} pie plot')
+            self.logger.info(f'{column} pie plot plotted successfully')
+        else:
+            plt.title(title)
+            self.logger.info(f'{title} pie plot plotted successfully')
+        if save_as == '':
+            plt.show()
+        else:
+            plt.savefig(save_as)
+
+    def plot_hist(self, df: pd.DataFrame, column: str, color: str) -> None:
+        # plt.figure(figsize=(15, 10))
+        # fig, ax = plt.subplots(1, figsize=(12, 7))
+        self.logger.info('setting up distribution plot')
+        sns.displot(data=df, x=column, color=color, kde=True, height=7,
+                    aspect=2)
+        plt.title(f'Distribution of {column}', size=20, fontweight='bold')
+        plt.show()
+        # TODO: if logger info is bad try this
+        # logger.info(f'Distribution of {column} plot successfully plotted')
+        self.logger.info(f'{column} hist plot plotted successfully')
+
+    def plot_count(self, df: pd.DataFrame, column: str, hue: str = '',
+                   title: str = '', save_as: str = '') -> None:
+        self.logger.info('setting up count plot')
+        plt.figure(figsize=(12, 7))
+        if hue == '':
+            sns.countplot(data=df, x=column)
+        else:
+            sns.countplot(data=df, x=column, hue=hue)
+        if title == '':
+            plt.title(f'Distribution of {column}', size=20, fontweight='bold')
+            self.logger.info(f'{column} count plot plotted successfully')
+        else:
+            plt.title(f'Distribution of {title}', size=20, fontweight='bold')
+            self.logger.info(f'{title} count plot plotted successfully')
+        plt.xlabel(f'{column}', fontsize=16)
+        plt.ylabel("Count", fontsize=16)
+        plt.xticks(rotation=45)
+        if save_as == '':
+            plt.show()
+        else:
+            plt.savefig(save_as)
+        # TODO: if logger info is bad try this
+        # logger.info(f'Distribution of {column} plot successfully plotted')
+
+    def plot_bar(self, df: pd.DataFrame, x_col: str, y_col: str, title: str,
+                 xlabel: str, ylabel: str) -> None:
+        self.logger.info('setting up bar plot')
+        plt.figure(figsize=(12, 7))
+        sns.barplot(data=df, x=x_col, y=y_col)
+        plt.title(title, size=20)
+        plt.xticks(rotation=75, fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.xlabel(xlabel, fontsize=16)
+        plt.ylabel(ylabel, fontsize=16)
+        plt.show()
+        self.logger.info(f'{title} bar plot plotted successfully')
+
+    # TODO : update this correlation map with the one from last week and
+    # compare it with the new one below
+    def plot_heatmap(self, df: pd.DataFrame, title: str, cbar: bool = False,
+                     save_as: str = '') -> None:
+        self.logger.info('setting up heat map plot')
+        plt.figure(figsize=(12, 7))
+        sns.heatmap(df.corr(), annot=True, fmt='.5f', linewidths=1, cbar=True)
+        plt.title(title, size=20, fontweight='bold')
+        if save_as == '':
+            plt.show()
+        else:
+            plt.savefig(save_as)
+        self.logger.info(f'{title} heat map plot plotted successfully')
+
+    def plot_heatmap_from_correlation(self, correlation, title: str):
+        '''
+        heatmap: Plot rectangular data as a color-encoded matrix and
+        correlation matrix.
+        title: Title of the plot
+        correlation: correlation matrix
+        '''
+        plt.figure(figsize=(14, 9))
+        sns.heatmap(correlation)
+        plt.title(title, size=18, fontweight='bold')
+        plt.show()
+
+    def plot_box(self, df: pd.DataFrame, x_col: str, title: str) -> None:
+        self.logger.info('setting up box plot')
+        plt.figure(figsize=(12, 7))
+        sns.boxplot(data=df, x=x_col)
+        plt.title(title, size=20)
+        plt.xticks(rotation=75, fontsize=14)
+        plt.show()
+        self.logger.info(f'{title} box plot plotted successfully')
+
+    def plot_box_multi(self, df: pd.DataFrame, x_col: str, y_col: str,
+                       title: str) -> None:
+        self.logger.info('setting up box plot')
+        plt.figure(figsize=(12, 7))
+        sns.boxplot(data=df, x=x_col, y=y_col)
+        plt.title(title, size=20)
+        plt.xticks(rotation=75, fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.show()
+        self.logger.info(f'{title} multi box plot plotted successfully')
+
+    def plot_scatter(self, df: pd.DataFrame, x_col: str, y_col: str,
+                     title: str, hue: str, style: str) -> None:
         """
-        A function that fills null values with their corresponding median
-        values
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The data frame with the null values
-        cols: list
-            The list of features to be filled with median values
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The data frame with the null values replace with their
-            corresponding median values
+        # scatter: Plot data as a scatter plot.
+        # df: dataframe to be plotted
+        # x_col: x-axis column
+        # y_col: y-axis column
+        # title: Title of the plot
+        # hue: hue column
         """
-        try:
-            print(f'features to be filled with median values: {cols}')
-            self.logger.info('features to be filled with median values: ' +
-                             f'{cols}')
-            df[cols] = df[cols].fillna(df[cols].median())
-            self.logger.info(f'features: {cols} filled with median ' +
-                             'successfully')
-            print(f'features: {cols} filled with median successfully')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    # TODO: compare this fill method with others
-    # TODO: also group these methods together, write them one after the other
-    # instead of putting them in a scattered manner all over this script
-    def fillWithMean(self, df: pd.DataFrame, cols: list) -> pd.DataFrame:
-        """
-        A function that fills null values with their corresponding mean
-        values
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The data frame with the null values
-        cols: list
-            The list of features to be filled with mean values
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The data frame with the null values replace with their
-            corresponding mean values
-        """
-        try:
-            self.logger.info(f'features to be filled with mean values: {cols}')
-            print(f'features to be filled with mean values: {cols}')
-            df[cols] = df[cols].fillna(df[cols].mean())
-            self.logger.info(f'cols: {cols} filled with mean successfully')
-            print(f'cols: {cols} filled with mean successfully')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    # TODO : compare the two outlier fixers
-    def fix_outlier(self, df: pd.DataFrame, column: str) -> pd.DataFrame:
-        """
-        A function to fix outliers with median
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The data frame containing the outlier features
-        column: str
-            The string name of the feature with the outlier problem
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The fixed data frame
-        """
-        try:
-            self.logger.info('feature to be filled with median values: ' +
-                             f'{column}')
-            print(f'feature to be filled with median values: {column}')
-            df[column] = np.where(df[column] > df[column].quantile(0.95),
-                                  df[column].median(), df[column])
-            self.logger.info(f'feature: {column} outlier fixed successfully')
-            print(f'feature: {column} outlier fixed successfully')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df[column]
-
-    def replace_outlier_with_median(self, dataFrame: pd.DataFrame,
-                                    feature: str) -> pd.DataFrame:
-        """
-        A function to fix outliers with median
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The data frame containing the outlier features
-        feature: str
-            The string name of the feature with the outlier problem
-
-        Returns
-        =-----=
-        dataFrame: pandas data frame
-            The fixed data frame
-        """
-        try:
-            Q1 = dataFrame[feature].quantile(0.25)
-            Q3 = dataFrame[feature].quantile(0.75)
-            median = dataFrame[feature].quantile(0.50)
-
-            IQR = Q3 - Q1
-
-            upper_whisker = Q3 + (1.5 * IQR)
-            lower_whisker = Q1 - (1.5 * IQR)
-
-            dataFrame[feature] = np.where(
-                dataFrame[feature] > upper_whisker, median, dataFrame[feature])
-            self.logger.info(f'feature: {feature} outlier values greater ' +
-                             f'than: {upper_whisker} fixed successfully ' +
-                             f'with the median value of: {median}')
-            print(f'feature: {feature} outlier values greater than: ' +
-                  f'{upper_whisker} fixed successfully with the median ' +
-                  f'value of: {median}')
-            dataFrame[feature] = np.where(
-                dataFrame[feature] < lower_whisker, median, dataFrame[feature])
-            self.logger.info(f'feature: {feature} outlier values less than: ' +
-                             f'{lower_whisker} fixed successfully with the ' +
-                             f'median value of: {median}')
-            print(f'feature: {feature} outlier values less than: '
-                  + '{lower_whisker} fixed successfully with the median '
-                  + 'value of: {median}')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return dataFrame
-
-    def choose_k_means(self, df: pd.DataFrame, num: int):
-        """
-        A function to choose the optimal k means cluster
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The data frame that holds all the values
-        num: integer
-            The x scale
-
-        Returns
-        =-----=
-        distortions and inertias
-        """
-        try:
-            distortions = []
-            inertias = []
-            K = range(1, num)
-            for k in K:
-                k_means = KMeans(n_clusters=k, random_state=777).fit(df)
-                distortions.append(sum(
-                    np.min(cdist(df, k_means.cluster_centers_, 'euclidean'),
-                           axis=1)) / df.shape[0])
-                inertias.append(k_means.inertia_)
-            self.logger.info(f'distortion: {distortions} and inertia:' +
-                             f'{inertias} calculated for {num} number of'
-                             'clusters successfully')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return (distortions, inertias)
-
-    def computeBasicAnalysisOnClusters(self, df: pd.DataFrame,
-                                       cluster_col: str, cluster_size: int,
-                                       cols: list) -> None:
-        """
-        A function that gives some basic description of the 3 clusters
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The main data frame containing all the data
-        cluster_col: str
-            The feature name holding the cluster values
-        cluster_size: integer
-            The number of total cluster groups
-        cols: list
-            The feature list on which to provide description
-
-        Returns
-        =-----=
-        None: nothing
-            This function only prints out information
-        """
-        try:
-            i = 0
-            for i in range(cluster_size):
-                cluster = df[df[cluster_col] == i]
-                print("Cluster " + (i+1) * "I")
-                print(cluster[cols].describe())
-                print("\n")
-            self.logger.info(f'basic analysis on {cluster_size} clusters' +
-                             'computed successfully')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-
-    # new additions
-    # TODO: add try, except finally _ DONE
-    # TODO: add comment _ DONE
-    # TODO: add logger _ DONE
-    # TODO: PEP8
-    # TODO: compare this fill method with others
-    def fix_missing_ffill(self, df: pd.DataFrame, cols: list) -> None:
-        """
-        A function to fill missing values with the ffill method
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        cols: list
-            A list containing the missing values
-
-        Returns
-        =-----=
-        None: nothing
-            Just fills the missing values
-        """
-        try:
-            for col in cols:
-                old = df[col].isna().sum()
-                df[col] = df[col].fillna(method='ffill')
-                new = df[col].isna().sum()
-                if new == 0:
-                    print(f"{old} missing values in the feature {col} have been replaced \
-                        using the forward fill method.")
-                    self.logger.info(f"{old} missing values in the feature {col} have been replaced \
-                        using the forward fill method.")
-                else:
-                    count = old - new
-                    print(f"{count} missing values in the feature {col} have been replaced \
-                        using the forward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the feature {col}.")
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced \
-                        using the forward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the features {col}.")
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-
-    # TODO: compare this fill method with others
-    def fix_missing_bfill(self, df: pd.DataFrame, cols: list) -> None:
-        """
-        A function to fill missing values with the bfill method
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        cols: list
-            A list containing the missing values
-
-        Returns
-        =-----=
-        None: nothing
-            Just fills the missing values
-        """
-        try:
-            for col in cols:
-                old = df[col].isna().sum()
-                df[col] = df[col].fillna(method='bfill')
-                new = df[col].isna().sum()
-                if new == 0:
-                    self.logger.info(f"{old} missing values in the feature {col} have been replaced \
-                        using the backward fill method.")
-                    print(f"{old} missing values in the feature {col} have been replaced \
-                        using the backward fill method.")
-                else:
-                    count = old - new
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced \
-                        using the backward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the feature {col}.")
-                    print(f"{count} missing values in the feature {col} have been replaced \
-                        using the backward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the feature {col}.")
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-
-    def missing_values_table(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        A function to calculate missing values by features
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-
-        Returns
-        =-----=
-        mis_val_table_ren_columns: pandas data frame
-            The data frame containing missing value information
-        """
-        try:
-            # Total missing values
-            mis_val = df.isnull().sum()
-
-            # Percentage of missing values
-            mis_val_percent = 100 * mis_val / len(df)
-
-            # dtype of missing values
-            mis_val_dtype = df.dtypes
-
-            # Make a table with the results
-            mis_val_table = pd.concat([mis_val, mis_val_percent, mis_val_dtype],
-                                    axis=1)
-
-            # Rename the features
-            mis_val_table_ren_columns = mis_val_table.rename(
-            columns = {0 : 'Missing Values', 1 : '% of Total Values', 2: 'Dtype'})
-
-            # Sort the table by percentage of missing descending and remove features with no missing values
-            mis_val_table_ren_columns = mis_val_table_ren_columns[
-                mis_val_table_ren_columns.iloc[:,0] != 0].sort_values(
-            '% of Total Values', ascending=False).round(2)
-
-            # Print some summary information
-            print ("Your selected dataframe has " + str(df.shape[1]) + " features.\n"
-                "There are " + str(mis_val_table_ren_columns.shape[0]) +
-                " features that have missing values.")
-            self.logger.info("Your selected dataframe has " + str(df.shape[1]) + " features.\n"
-                "There are " + str(mis_val_table_ren_columns.shape[0]) +
-                " features that have missing values.")
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            if mis_val_table_ren_columns.shape[0] == 0:
-                return
-            # Return the dataframe with missing information
-            return mis_val_table_ren_columns
-
-    # TODO: compare this fill method with others
-    def fix_missing_value(self, df: pd.DataFrame, cols: list, value: int) -> None:
-        """
-        A function to fix missing values by a given value
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        cols: list
-            List of features containing the names of the missing values
-        value: integer
-            The value to fill the missing values with
-
-        Returns
-        =-----=
-        None: noting
-            Just fills the missing value with a given value
-        """
-        try:
-            for col in cols:
-                count = df[col].isna().sum()
-                df[col] = df[col].fillna(value)
-                if type(value) == 'str':
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced by \'{value}\'.")
-                    print(f"{count} missing values in the feature {col} have been replaced by \'{value}\'.")
-                else:
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced by {value}.")
-                    print(f"{count} missing values in the feature {col} have been replaced by {value}.")
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-
-    # TODO: compare this fill method with others
-    # TODO: test this method it has not been tested
-    def fill_missing_rolling(self, df: pd.DataFrame, cols: list, window: int=5, min_period=2) -> pd.DataFrame:
-        """
-        A function to fill missing values using the rolling method
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The main data frame
-        cols: list
-            List of features with missing values
-        window: integer
-            The window to calculate rolling method on
-
-        min_period: integer
-            The minimum value to use for the rolling method
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The same data frame with the missing values filled using the
-            rolling method
-        """
-        try:
-            for col in cols:
-                df[col] = df[col].fillna(df[col].rolling(window=window,
-                                         min_periods=min_period).mean())
-                self.logger.info(f'column: {col} filled with the rolling ' +
-                                 f'method, window:{window}, min_periods: ' +
-                                 f'{min_period}')
-                print(f'column: {col} filled with the rolling method, ' +
-                      f'window:{window}, min_periods: {min_period}')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    def convert_to_string(self, df: pd.DataFrame, columns: list) -> pd.DataFrame :
-        """
-        A function to convert features to string data type
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        columns: list
-            List of features to be converted to string data types
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The converted data frame
-        """
-        try:
-            for col in columns:
-                df[col] = df[col].astype("string")
-                self.logger.info(f'feature: {col} converted to string data type format')
-                print(f'feature: {col} converted to string data type format')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    def convert_to_numeric(self, df: pd.DataFrame,
-                           columns: list) -> pd.DataFrame:
-        """
-        A function to convert features to numeric data type
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        columns: list
-            List of features to be converted to numeric data types
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The converted data frame
-        """
-        try:
-            for col in columns:
-                df[col] = pd.to_numeric(df[col])
-                self.logger.info(f'feature: {col} converted to numeric data '
-                                 + 'type format')
-                print(f'feature: {col} converted to numeric data type format')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    def convert_to_int(self, df: pd.DataFrame, columns: list) -> pd.DataFrame:
-        """
-        A function to convert features to integer data type
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        columns: list
-            List of features to be converted to integer data types
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The converted data frame
-        """
-        try:
-            for col in columns:
-                df[col] = df[col].astype("int64")
-                self.logger.info(f'feature: {col} converted to integer data type format')
-                print(f'feature: {col} converted to integer data type format')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    def convert_to_datetime(self, df: pd.DataFrame, columns: list) -> pd.DataFrame:
-        """
-        A function to convert features to datetime data type
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        columns: list
-            List of features to be converted to datetime data types
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The converted data frame
-        """
-        try:
-            for col in columns:
-                df[col] = pd.to_datetime(df[col], errors='raise')
-                self.logger.info(f'feature: {col} successfully changed to datetime')
-                print(f'feature: {col} successfully changed to datetime')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    def multiply_by_factor(self, df: pd.DataFrame, columns: list, factor: float) -> pd.DataFrame:
-        """
-        A function that multiplies a features by a given factor
-
-        Parameters
-        =--------=
-        df: pandas dataframe
-            The main dataframe
-        columns: list
-            List of features to be multiplied by a factor
-        factor: float
-            The multiplying factor
-
-        Returns
-        =-----=
-        df: pandas data frame
-            The multiplied data frame
-        """
-        try:
-            for col in columns:
-                df[col] = df[col] * factor
-                self.logger.info(f'feature: {col} multiplied by a factor of: {factor}')
-                print(f'feature: {col} multiplied by a factor of: {factor}')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return df
-
-    def show_cols_mixed_dtypes(self, df: pd.DataFrame) -> None:
-        """
-        A function to show mixed data types
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The main data frame
-
-        Returns
-        =-----=
-        None: nothing
-            Just prints the mixed data types
-        """
-        try:
-            mixed_dtypes = {'Column': [], 'Data type': []}
-            for col in df.columns:
-                dtype = pd.api.types.infer_dtype(df[col])
-                if dtype.startswith("mixed"):
-                    mixed_dtypes['Column'].append(col)
-                    mixed_dtypes['Data type'].append(dtype)
-            if len(mixed_dtypes['Column']) == 0:
-                self.logger.info('None of the features contain mixed types.')
-                print('None of the features contain mixed types.')
-            else:
-                self.logger.info(pd.DataFrame(mixed_dtypes))
-                print(pd.DataFrame(mixed_dtypes))
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-
-    def drop_duplicates(self, df: pd.DataFrame) -> None:
-        """
-        A function to drop duplicates
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The main data frame
-
-        Returns
-        =-----=
-        None: nothing
-            Just drops duplicates from the data set
-        """
-        try:
-            old = df.shape[0]
-            df.drop_duplicates(inplace=True)
-            new = df.shape[0]
-            count = old - new
-            if (count == 0):
-                self.logger.info("No duplicate rows were found.")
-                print("No duplicate rows were found.")
-            else:
-                self.logger.info(f"{count} duplicate rows were found and removed.")
-                print(f"{count} duplicate rows were found and removed.")
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-
-    def getMonth(self, month_list: list, index: int) -> int:
-        """
-        A function to return the index of a given month
-
-        Parameters
-        =--------=
-        month_lits: list
-            List of months
-        index: int
-            The index of the required grouping
-        Returns
-        =-----=
-        months.index: int
-            The index of the given month
-        """
-        try:
-            months = ['0', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-            month_list = month_list.split(',')
-            month = month_list[index]
-            self.logger.info(f'month index calculated for the month: {month}. Value: {months.index(month)}')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return months.index(month)
-
-    def encode_to_numeric(self, data: pd.DataFrame, columns: list) -> pd.DataFrame:
-        """
-        A function to change categorical variables to numerical value
-
-        Parameters
-        =--------=
-        data: pandas data frame
-            The main data frame
-        columns: list
-            The list of features to be label encoded
-
-        Returns
-        =-----=
-        data: pandas dataframe
-            The data frame with selected features label encoded
-        """
-        try:
-            lb = preprocessing.LabelEncoder()
-            for cols in columns:
-                data[cols] = lb.fit_transform(data[cols])
-                self.logger.info(f'feature: {cols} label encoded')
-                print(f'feature: {cols} label encoded')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-        finally:
-            return data
-
-    def save_data(self, df: pd.DataFrame, path: str, type: str = 'csv',
-                  index: bool = False) -> None:
-        """
-        A function to save data frames to file
-
-        Parameters
-        =--------=
-        df: pandas data frame
-            The data frame to save
-        path: string
-            The path of the file to save to
-        type: string
-            The type of the file to be saved as
-        index: bool
-            Whether the file to be saved will have an index or not
-
-        Returns
-        =-----=
-        None: nothing
-            Just saves the data frame to file
-        """
-        try:
-            if type == 'csv':
-                df.to_csv(path, index=index)
-                self.logger.debug(f'data frame with shape: {df.shape} saved as a csv file at path: {path} successfully')
-                print(f'data frame with shape: {df.shape} saved as a csv file at path: {path} successfully')
-        except Exception as e:
-            self.logger.error(e, exec_info=True)
-            print(e)
-
-
-
-
+        self.logger.info('setting up scatter plot')
+        plt.figure(figsize=(12, 7))
+        sns.scatterplot(data=df, x=x_col, y=y_col, hue=hue, style=style)
+        plt.title(title, size=20)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.show()
+        self.logger.info(f'{title} scatter plot plotted successfully')
+
+    def bi_variate_plot(self, df, features, fields):
+        fig, axs = plt.subplots(10, 3, figsize=(20, 45))
+        for col in range(len(features)):
+            for f in range(len(fields)):
+                self.logger.info('setting up hist plot')
+                sns.histplot(df, x=features[col]+"_"+fields[f],
+                             hue="diagnosis", element="bars", stat="count",
+                             # TODO : modify palette
+                             palette=["gold", "purple"],
+                             ax=axs[col][f])
+        self.logger.info('several bi-variate plots plotted successfully')
 
     # TODO: NEW ADDITIONS
-    # get state holiday list
-    # 10 days for Easter
-    # 3 days for public holiday
-    # Considering christmas lasts for 12 days, Easter for 50 days and public holidays for 1 day.
-    #a = public holiday, b = Easter holiday, c = Christmas, 0 = None
-    def affect_list(self, change_list, interval, duration, index):
-        start_pt = int(index-duration/2) - interval
-        try:
-            for index in range(start_pt, start_pt + interval):
-                change_list[index] = 'before'
-            for index in range(start_pt + interval, start_pt + interval + duration):
-                change_list[index] = 'during'
-            for index in range(start_pt + interval + duration, start_pt + interval + duration + interval):
-                change_list[index] = 'after'
-        except:
-            pass
-        return change_list
-
-    def modify_holiday_list(self, holiday_list:list) -> list:
-        new_index = ["neither"] * len(holiday_list)
-        for index , value in enumerate(holiday_list):
-            if value == 'a': #public holiday
-                self.affect_list(new_index, 3, 1, index)
-            elif value == 'b': #Easter
-                self.affect_list(new_index, 10, 50, index)
-            elif value == 'c': # christmas
-                self.affect_list(new_index, 5, 12, index)
-            else:
-                pass
-        return new_index
-
-    def change_columns_type_to(self, df : pd.DataFrame, cols: list, data_type: str) -> pd.DataFrame:
+    def plotly_plot_pie(self, df, column, limit=None, title=None):
         """
-        Returns a DataFrame where the specified columns data types are changed to the specified data type
-        Parameters
-        ----------
-        cols:
-            Type: list
-        data_type:
-            Type: str
-        Returns
-        -------
-        pd.DataFrame
+        """
+        a = pd.DataFrame({'count': df.groupby([column]).size()}).reset_index()
+        a = a.sort_values("count", ascending=False)
+        if limit:
+            a.loc[a['count'] < limit, column] = f'Other {column}s'
+        if title is None:
+            title = f'Distribution of {column}'
+        fig = px.pie(a, values='count', names=column, title=title, width=800,
+                     height=500)
+        fig.show()
+
+    def plot_factor(self, data: pd.DataFrame, x: str, y: str, col: str,
+                    palette: str, hue: str, col_order: list,
+                    title: str) -> None:
+        """
         """
         try:
-            for col in cols:
-                df[col] = df[col].astype(data_type)
-                self.logger.info(f"Successfully changed column: {col} type to {data_type}")
+            self.logger.info('setting up factor plot')
+            # plt.figure(figsize=(12, 7))
+            sns.factorplot(data=data, x=x, y=y, col=col, palette=palette,
+                           hue=hue, col_order=col_order, title=title)
+            plt.show()
         except Exception as e:
-            self.logger.error(e, trace_info=True)
-            print(e, 'Failed to change columns type')
-        finally:
-            return df
+            self.logger.error(e, exec_info=True)
+            print(e)
 
-    def optimize_df(self, df: pd.DataFrame) -> pd.DataFrame:
+    def plotly_plot_hist(self, df, column, color=['cornflowerblue'],
+                         title=None):
         """
-        Returns the DataFrames information after all column data types are
-        optimized (to a lower data type)
-        Parameters
-        ----------
-        None
-        Returns
-        -------
-        pd.DataFrame
         """
-        data_types = df.dtypes
-        optimize = ['float64', 'int64']
-        try:
-            for col in data_types.index:
-                if (data_types[col] in optimize):
-                    if (data_types[col] == 'float64'):
-                        # downcast a float column
-                        df[col] = pd.to_numeric(
-                            df[col], downcast='float')
-                    elif (data_types[col] == 'int64'):
-                        # downcast an integer column
-                        df[col] = pd.to_numeric(
-                            df[col], downcast='unsigned')
-            self.logger.info(f"DataFrame optimized")
-            print("DataFrame optimized")
-        except Exception as e:
-            self.logger.error(e, trace_info=True)
-            print(e, 'Failed to optimize')
-        finally:
-            return df
+        if title is None:
+            title = f'Distribution of {column}'
+        fig = px.histogram(
+                df,
+                x=column,
+                marginal='box',
+                color_discrete_sequence=color,
+                title=title)
+        fig.update_layout(bargap=0.01)
+        fig.show()
