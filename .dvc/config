@@ -1,5 +1,5 @@
 [core]
-    remote = local-store
     autostage = true
+    remote = local-store
 ['remote "local-store"']
-    url = /home/f0x-tr0t/Documents/10X/
+    url = /home/f0x-tr0t/Documents/dvc-store/
