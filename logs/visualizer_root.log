@@ -6,3 +6,7 @@
 [2022-10-19 22:54:53,696] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
 [2022-10-19 22:55:17,362] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
 [2022-10-19 22:57:10,178] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
+[2022-10-19 23:14:13,514] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-19 23:14:38,212] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
