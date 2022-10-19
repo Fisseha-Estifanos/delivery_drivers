@@ -146,7 +146,7 @@ class dataCleaner():
 
             # Calculate percentage of missing values
             print("The dataset contains " +
-                  f"{round(((totalMissing/totalCells)*100), 10)} " +
+                  f"{round(((totalMissing/totalCells)*100), 7)}" +
                   "% missing values")
             self.logger.info("The dataset contains " +
                              f"{round(((totalMissing/totalCells)*100), 10)} " +
