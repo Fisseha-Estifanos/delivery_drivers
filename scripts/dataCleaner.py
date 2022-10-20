@@ -44,7 +44,7 @@ class dataCleaner():
 
     def setup_logger(self, log_path: str) -> logging.Logger:
         """
-        A function to set up logging
+        A method to set up logging
 
         Parameters
         =--------=
@@ -94,7 +94,7 @@ class dataCleaner():
     def remove_unwanted_cols(self, df: pd.DataFrame,
                              cols: list) -> pd.DataFrame:
         """
-        A function to remove unwanted features from a DataFrame
+        A method to remove unwanted features from a DataFrame
 
         Parameters
         =--------=
@@ -121,7 +121,7 @@ class dataCleaner():
 
     def percent_missing(self, df: pd.DataFrame) -> None:
         """
-        A function telling how many missing values exist or better still
+        A method telling how many missing values exist or better still
         what is the % of missing values in the dataset?
 
         Parameters
@@ -158,7 +158,7 @@ class dataCleaner():
     # TODO: compare this fill method with others
     def fillWithMedian(self, df: pd.DataFrame, cols: list) -> pd.DataFrame:
         """
-        A function that fills null values with their corresponding median
+        A method that fills null values with their corresponding median
         values
 
         Parameters
@@ -193,7 +193,7 @@ class dataCleaner():
     # instead of putting them in a scattered manner all over this script
     def fillWithMean(self, df: pd.DataFrame, cols: list) -> pd.DataFrame:
         """
-        A function that fills null values with their corresponding mean
+        A method that fills null values with their corresponding mean
         values
 
         Parameters
@@ -224,7 +224,7 @@ class dataCleaner():
     # TODO : compare the two outlier fixers
     def fix_outlier(self, df: pd.DataFrame, column: str) -> pd.DataFrame:
         """
-        A function to fix outliers with median
+        A method to fix outliers with median
 
         Parameters
         =--------=
@@ -255,7 +255,7 @@ class dataCleaner():
     def replace_outlier_with_median(self, dataFrame: pd.DataFrame,
                                     feature: str) -> pd.DataFrame:
         """
-        A function to fix outliers with median
+        A method to fix outliers with median
 
         Parameters
         =--------=
@@ -303,7 +303,7 @@ class dataCleaner():
 
     def choose_k_means(self, df: pd.DataFrame, num: int):
         """
-        A function to choose the optimal k means cluster
+        A method to choose the optimal k means cluster
 
         Parameters
         =--------=
@@ -339,7 +339,7 @@ class dataCleaner():
                                        cluster_col: str, cluster_size: int,
                                        cols: list) -> None:
         """
-        A function that gives some basic description of the 3 clusters
+        A method that gives some basic description of the 3 clusters
 
         Parameters
         =--------=
@@ -378,7 +378,7 @@ class dataCleaner():
     # TODO: compare this fill method with others
     def fix_missing_ffill(self, df: pd.DataFrame, cols: list) -> None:
         """
-        A function to fill missing values with the ffill method
+        A method to fill missing values with the ffill method
 
         Parameters
         =--------=
@@ -417,7 +417,7 @@ class dataCleaner():
     # TODO: compare this fill method with others
     def fix_missing_bfill(self, df: pd.DataFrame, cols: list) -> None:
         """
-        A function to fill missing values with the bfill method
+        A method to fill missing values with the bfill method
 
         Parameters
         =--------=
@@ -455,7 +455,7 @@ class dataCleaner():
 
     def missing_values_table(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        A function to calculate missing values by features
+        A method to calculate missing values by features
 
         Parameters
         =--------=
@@ -509,7 +509,7 @@ class dataCleaner():
     # TODO: compare this fill method with others
     def fix_missing_value(self, df: pd.DataFrame, cols: list, value: int) -> None:
         """
-        A function to fix missing values by a given value
+        A method to fix missing values by a given value
 
         Parameters
         =--------=
@@ -543,7 +543,7 @@ class dataCleaner():
     # TODO: test this method it has not been tested
     def fill_missing_rolling(self, df: pd.DataFrame, cols: list, window: int=5, min_period=2) -> pd.DataFrame:
         """
-        A function to fill missing values using the rolling method
+        A method to fill missing values using the rolling method
 
         Parameters
         =--------=
@@ -580,7 +580,7 @@ class dataCleaner():
 
     def convert_to_string(self, df: pd.DataFrame, columns: list) -> pd.DataFrame :
         """
-        A function to convert features to string data type
+        A method to convert features to string data type
 
         Parameters
         =--------=
@@ -608,7 +608,7 @@ class dataCleaner():
     def convert_to_numeric(self, df: pd.DataFrame,
                            columns: list) -> pd.DataFrame:
         """
-        A function to convert features to numeric data type
+        A method to convert features to numeric data type
 
         Parameters
         =--------=
@@ -636,7 +636,7 @@ class dataCleaner():
 
     def convert_to_int(self, df: pd.DataFrame, columns: list) -> pd.DataFrame:
         """
-        A function to convert features to integer data type
+        A method to convert features to integer data type
 
         Parameters
         =--------=
@@ -663,7 +663,7 @@ class dataCleaner():
 
     def convert_to_datetime(self, df: pd.DataFrame, columns: list) -> pd.DataFrame:
         """
-        A function to convert features to datetime data type
+        A method to convert features to datetime data type
 
         Parameters
         =--------=
@@ -690,7 +690,7 @@ class dataCleaner():
 
     def multiply_by_factor(self, df: pd.DataFrame, columns: list, factor: float) -> pd.DataFrame:
         """
-        A function that multiplies a features by a given factor
+        A method that multiplies a features by a given factor
 
         Parameters
         =--------=
@@ -719,7 +719,7 @@ class dataCleaner():
 
     def show_cols_mixed_dtypes(self, df: pd.DataFrame) -> None:
         """
-        A function to show mixed data types
+        A method to show mixed data types
 
         Parameters
         =--------=
@@ -750,7 +750,7 @@ class dataCleaner():
 
     def drop_duplicates(self, df: pd.DataFrame) -> None:
         """
-        A function to drop duplicates
+        A method to drop duplicates
 
         Parameters
         =--------=
@@ -779,7 +779,7 @@ class dataCleaner():
 
     def getMonth(self, month_list: list, index: int) -> int:
         """
-        A function to return the index of a given month
+        A method to return the index of a given month
 
         Parameters
         =--------=
@@ -805,7 +805,7 @@ class dataCleaner():
 
     def encode_to_numeric(self, data: pd.DataFrame, columns: list) -> pd.DataFrame:
         """
-        A function to change categorical variables to numerical value
+        A method to change categorical variables to numerical value
 
         Parameters
         =--------=
@@ -834,7 +834,7 @@ class dataCleaner():
     def save_data(self, df: pd.DataFrame, path: str, type: str = 'csv',
                   index: bool = False) -> None:
         """
-        A function to save data frames to file
+        A method to save data frames to file
 
         Parameters
         =--------=

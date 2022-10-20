@@ -57,7 +57,7 @@ class dataVisualizer():
 
     def setup_logger(self, log_path: str) -> logging.Logger:
         """
-        A function to set up logging
+        A method to set up logging
 
         Parameters
         =--------=
@@ -108,7 +108,7 @@ class dataVisualizer():
     def plot_pie(self, df: pd.DataFrame, column: str, title: str = '',
                  largest: int = 10, save_as: str = '') -> None:
         """
-        A function to plot pie charts
+        A method to plot pie charts
 
         Parameters
         =--------=
