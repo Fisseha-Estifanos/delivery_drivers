@@ -21,3 +21,49 @@
     #####-->    Data cleaner logger for EDA notebook    <--#####
 ]
 [2022-10-20 17:30:55,988] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0616394911 % missing values]
+[2022-10-20 20:28:17,714] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-20 20:28:28,610] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0616394911 % missing values]
+[2022-10-20 20:37:19,549] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-20 20:37:19,713] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-20 20:44:30,838] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-20 20:44:31,381] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-20 20:44:31,788] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-20 20:44:32,101] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-20 21:39:52,352] [dataCleaner] [convert_to_string] [INFO] --> [feature: Trip Start Time converted to string data type format]
+[2022-10-20 21:39:53,962] [dataCleaner] [convert_to_string] [INFO] --> [feature: Trip End Time converted to string data type format]
+[2022-10-20 21:41:32,366] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-20 21:41:43,603] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-20 21:41:43,684] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-20 21:41:45,424] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-20 21:41:45,783] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-20 21:41:46,140] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-20 21:41:46,521] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-20 21:48:05,976] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819 % missing values]
+[2022-10-20 21:48:07,330] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-20 21:48:07,482] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-20 22:54:57,324] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-20 22:55:06,488] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-20 22:55:06,562] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-20 22:55:07,998] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-20 22:55:08,335] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-20 22:55:08,583] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-20 22:55:08,830] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-20 22:58:11,117] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819 % missing values]
+[2022-10-20 22:58:12,892] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-20 22:58:12,966] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-20 23:43:59,700] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-20 23:44:08,246] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-20 23:44:08,321] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-20 23:44:10,327] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-20 23:44:10,745] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-20 23:44:11,054] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-20 23:44:11,323] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-20 23:47:12,936] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819 % missing values]
