@@ -17,6 +17,7 @@ class dataCleaner():
     """
     A data cleaner class.
     """
+
     def __init__(self, fromThe: str) -> None:
         """
         The data cleaner initializer
@@ -149,7 +150,7 @@ class dataCleaner():
                   f"{round(((totalMissing/totalCells)*100), 7)}" +
                   "% missing values")
             self.logger.info("The dataset contains " +
-                             f"{round(((totalMissing/totalCells)*100), 10)} " +
+                             f"{round(((totalMissing/totalCells)*100), 10)}" +
                              "% missing values")
         except Exception as e:
             self.logger.error(e, exec_info=True)
@@ -398,18 +399,22 @@ class dataCleaner():
                 df[col] = df[col].fillna(method='ffill')
                 new = df[col].isna().sum()
                 if new == 0:
-                    print(f"{old} missing values in the feature {col} have been replaced \
-                        using the forward fill method.")
-                    self.logger.info(f"{old} missing values in the feature {col} have been replaced \
-                        using the forward fill method.")
+                    print(f"{old} missing values in the feature {col} have" +
+                          " been replaced using the forward fill method.")
+                    self.logger.info(f"{old} missing values in the feature" +
+                                     f" {col} have been replaced using the" +
+                                     " forward fill method.")
                 else:
                     count = old - new
-                    print(f"{count} missing values in the feature {col} have been replaced \
-                        using the forward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the feature {col}.")
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced \
-                        using the forward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the features {col}.")
+                    print(f"{count} missing values in the feature {col}" +
+                          " have been replaced using the forward fill" +
+                          f" method. {new} missing values that couldn't be " +
+                          "imputed still remain in the feature {col}.")
+                    self.logger.info(f"{count} missing values in the feature" +
+                                     f" {col} have been replaced using the" +
+                                     f" forward fill method. {new} missing" +
+                                     " values that couldn't be imputed" +
+                                     f" still remain in the features {col}.")
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
@@ -437,18 +442,22 @@ class dataCleaner():
                 df[col] = df[col].fillna(method='bfill')
                 new = df[col].isna().sum()
                 if new == 0:
-                    self.logger.info(f"{old} missing values in the feature {col} have been replaced \
-                        using the backward fill method.")
-                    print(f"{old} missing values in the feature {col} have been replaced \
-                        using the backward fill method.")
+                    self.logger.info(f"{old} missing values in the feature" +
+                                     f" {col} have been replaced using the" +
+                                     " backward fill method.")
+                    print(f"{old} missing values in the feature {col} have" +
+                          " been replaced using the backward fill method.")
                 else:
                     count = old - new
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced \
-                        using the backward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the feature {col}.")
-                    print(f"{count} missing values in the feature {col} have been replaced \
-                        using the backward fill method. {new} missing values that couldn't be \
-                        imputed still remain in the feature {col}.")
+                    self.logger.info(f"{count} missing values in the feature" +
+                                     f" {col} have been replaced using the" +
+                                     f" backward fill method. {new} missing" +
+                                     " values that couldn't be imputed" +
+                                     f" still remain in the feature {col}.")
+                    print(f"{count} missing values in the feature {col}" +
+                          " have been replaced using the backward fill" +
+                          f" method. {new} missing values that couldn't" +
+                          f" be imputed still remain in the feature {col}.")
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
@@ -478,25 +487,29 @@ class dataCleaner():
             mis_val_dtype = df.dtypes
 
             # Make a table with the results
-            mis_val_table = pd.concat([mis_val, mis_val_percent, mis_val_dtype],
-                                    axis=1)
+            mis_val_table = pd.concat([mis_val, mis_val_percent,
+                                      mis_val_dtype], axis=1)
 
             # Rename the features
             mis_val_table_ren_columns = mis_val_table.rename(
-            columns = {0 : 'Missing Values', 1 : '% of Total Values', 2: 'Dtype'})
+                columns={0: 'Missing Values', 1: '% of Total Values', 2:
+                         'Dtype'})
 
-            # Sort the table by percentage of missing descending and remove features with no missing values
+            # Sort the table by percentage of missing descending and remove
+            # features with no missing values
             mis_val_table_ren_columns = mis_val_table_ren_columns[
-                mis_val_table_ren_columns.iloc[:,0] != 0].sort_values(
-            '% of Total Values', ascending=False).round(2)
+                mis_val_table_ren_columns.iloc[:, 0] != 0].sort_values(
+                '% of Total Values', ascending=False).round(2)
 
             # Print some summary information
-            print ("Your selected dataframe has " + str(df.shape[1]) + " features.\n"
-                "There are " + str(mis_val_table_ren_columns.shape[0]) +
-                " features that have missing values.")
-            self.logger.info("Your selected dataframe has " + str(df.shape[1]) + " features.\n"
-                "There are " + str(mis_val_table_ren_columns.shape[0]) +
-                " features that have missing values.")
+            print("Your selected dataframe has " + str(df.shape[1]) +
+                  " features.\n There are " +
+                  str(mis_val_table_ren_columns.shape[0]) +
+                  " features that have missing values")
+            self.logger.info("Your selected dataframe has " +
+                             str(df.shape[1]) + " features.\nThere are " +
+                             str(mis_val_table_ren_columns.shape[0]) +
+                             " features that have missing values")
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
@@ -507,7 +520,8 @@ class dataCleaner():
             return mis_val_table_ren_columns
 
     # TODO: compare this fill method with others
-    def fix_missing_value(self, df: pd.DataFrame, cols: list, value: int) -> None:
+    def fix_missing_value(self, df: pd.DataFrame, cols: list,
+                          value: int) -> None:
         """
         A method to fix missing values by a given value
 
@@ -530,18 +544,23 @@ class dataCleaner():
                 count = df[col].isna().sum()
                 df[col] = df[col].fillna(value)
                 if type(value) == 'str':
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced by \'{value}\'.")
-                    print(f"{count} missing values in the feature {col} have been replaced by \'{value}\'.")
+                    self.logger.info(f"{count} missing values in the feature" +
+                                     f" {col} have been replaced by '{value}'")
+                    print(f"{count} missing values in the feature {col} have" +
+                          f" been replaced by '{value}'")
                 else:
-                    self.logger.info(f"{count} missing values in the feature {col} have been replaced by {value}.")
-                    print(f"{count} missing values in the feature {col} have been replaced by {value}.")
+                    self.logger.info(f"{count} missing values in the feature" +
+                                     f" {col} have been replaced by {value}.")
+                    print(f"{count} missing values in the feature {col} have" +
+                          f" been replaced by {value}.")
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
 
     # TODO: compare this fill method with others
     # TODO: test this method it has not been tested
-    def fill_missing_rolling(self, df: pd.DataFrame, cols: list, window: int=5, min_period=2) -> pd.DataFrame:
+    def fill_missing_rolling(self, df: pd.DataFrame, cols: list,
+                             window: int = 5, min_period=2) -> pd.DataFrame:
         """
         A method to fill missing values using the rolling method
 
@@ -578,7 +597,8 @@ class dataCleaner():
         finally:
             return df
 
-    def convert_to_string(self, df: pd.DataFrame, columns: list) -> pd.DataFrame :
+    def convert_to_string(self, df: pd.DataFrame,
+                          columns: list) -> pd.DataFrame:
         """
         A method to convert features to string data type
 
@@ -597,7 +617,8 @@ class dataCleaner():
         try:
             for col in columns:
                 df[col] = df[col].astype("string")
-                self.logger.info(f'feature: {col} converted to string data type format')
+                self.logger.info(
+                    f'feature: {col} converted to string data type format')
                 print(f'feature: {col} converted to string data type format')
         except Exception as e:
             self.logger.error(e, exec_info=True)
@@ -653,7 +674,8 @@ class dataCleaner():
         try:
             for col in columns:
                 df[col] = df[col].astype("int64")
-                self.logger.info(f'feature: {col} converted to integer data type format')
+                self.logger.info(
+                    f'feature: {col} converted to integer data type format')
                 print(f'feature: {col} converted to integer data type format')
         except Exception as e:
             self.logger.error(e, exec_info=True)
@@ -661,7 +683,8 @@ class dataCleaner():
         finally:
             return df
 
-    def convert_to_datetime(self, df: pd.DataFrame, columns: list) -> pd.DataFrame:
+    def convert_to_datetime(self, df: pd.DataFrame,
+                            columns: list) -> pd.DataFrame:
         """
         A method to convert features to datetime data type
 
@@ -680,7 +703,8 @@ class dataCleaner():
         try:
             for col in columns:
                 df[col] = pd.to_datetime(df[col], errors='raise')
-                self.logger.info(f'feature: {col} successfully changed to datetime')
+                self.logger.info(f'feature: {col} successfully changed to' +
+                                 ' datetime')
                 print(f'feature: {col} successfully changed to datetime')
         except Exception as e:
             self.logger.error(e, exec_info=True)
@@ -688,7 +712,8 @@ class dataCleaner():
         finally:
             return df
 
-    def multiply_by_factor(self, df: pd.DataFrame, columns: list, factor: float) -> pd.DataFrame:
+    def multiply_by_factor(self, df: pd.DataFrame, columns: list,
+                           factor: float) -> pd.DataFrame:
         """
         A method that multiplies a features by a given factor
 
@@ -709,7 +734,8 @@ class dataCleaner():
         try:
             for col in columns:
                 df[col] = df[col] * factor
-                self.logger.info(f'feature: {col} multiplied by a factor of: {factor}')
+                self.logger.info(
+                    f'feature: {col} multiplied by a factor of: {factor}')
                 print(f'feature: {col} multiplied by a factor of: {factor}')
         except Exception as e:
             self.logger.error(e, exec_info=True)
@@ -771,7 +797,8 @@ class dataCleaner():
                 self.logger.info("No duplicate rows were found.")
                 print("No duplicate rows were found.")
             else:
-                self.logger.info(f"{count} duplicate rows were found and removed.")
+                self.logger.info(
+                    f"{count} duplicate rows were found and removed.")
                 print(f"{count} duplicate rows were found and removed.")
         except Exception as e:
             self.logger.error(e, exec_info=True)
@@ -793,17 +820,20 @@ class dataCleaner():
             The index of the given month
         """
         try:
-            months = ['0', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+            months = ['0', 'Jan', 'Feb', 'Mar', 'Apr', 'May',
+                      'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
             month_list = month_list.split(',')
             month = month_list[index]
-            self.logger.info(f'month index calculated for the month: {month}. Value: {months.index(month)}')
+            self.logger.info('month index calculated for the month: ' +
+                             f'{month}. Value: {months.index(month)}')
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
         finally:
             return months.index(month)
 
-    def encode_to_numeric(self, data: pd.DataFrame, columns: list) -> pd.DataFrame:
+    def encode_to_numeric(self, data: pd.DataFrame,
+                          columns: list) -> pd.DataFrame:
         """
         A method to change categorical variables to numerical value
 
@@ -855,65 +885,74 @@ class dataCleaner():
         try:
             if type == 'csv':
                 df.to_csv(path, index=index)
-                self.logger.debug(f'data frame with shape: {df.shape} saved as a csv file at path: {path} successfully')
-                print(f'data frame with shape: {df.shape} saved as a csv file at path: {path} successfully')
+                self.logger.debug(f'data frame with shape: {df.shape} saved' +
+                                  f' as a csv file at path: {path}' +
+                                  ' successfully')
+                print(f'data frame with shape: {df.shape} saved as a csv' +
+                      f' file at path: {path} successfully')
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
-
-
-
-
 
     # TODO: NEW ADDITIONS
     # get state holiday list
     # 10 days for Easter
     # 3 days for public holiday
-    # Considering christmas lasts for 12 days, Easter for 50 days and public holidays for 1 day.
-    #a = public holiday, b = Easter holiday, c = Christmas, 0 = None
+    # Considering christmas lasts for 12 days, Easter for 50 days and public
+    # holidays for 1 day.
+    # a = public holiday, b = Easter holiday, c = Christmas, 0 = None
+
     def affect_list(self, change_list, interval, duration, index):
         start_pt = int(index-duration/2) - interval
         try:
             for index in range(start_pt, start_pt + interval):
                 change_list[index] = 'before'
-            for index in range(start_pt + interval, start_pt + interval + duration):
+            for index in range(start_pt + interval, start_pt + interval +
+                               duration):
                 change_list[index] = 'during'
-            for index in range(start_pt + interval + duration, start_pt + interval + duration + interval):
+            for index in range(start_pt + interval + duration, start_pt +
+                               interval + duration + interval):
                 change_list[index] = 'after'
-        except:
-            pass
+        except Exception as e:
+            self.logger.error(e, exec_info=True)
+            print(e)
         return change_list
 
-    def modify_holiday_list(self, holiday_list:list) -> list:
+    def modify_holiday_list(self, holiday_list: list) -> list:
         new_index = ["neither"] * len(holiday_list)
-        for index , value in enumerate(holiday_list):
-            if value == 'a': #public holiday
+        for index, value in enumerate(holiday_list):
+            if value == 'a':  # public holiday
                 self.affect_list(new_index, 3, 1, index)
-            elif value == 'b': #Easter
+            elif value == 'b':  # Easter
                 self.affect_list(new_index, 10, 50, index)
-            elif value == 'c': # christmas
+            elif value == 'c':  # christmas
                 self.affect_list(new_index, 5, 12, index)
             else:
                 pass
         return new_index
 
-    def change_columns_type_to(self, df : pd.DataFrame, cols: list, data_type: str) -> pd.DataFrame:
+    def change_columns_type_to(self, df: pd.DataFrame, cols: list,
+                               data_type: str) -> pd.DataFrame:
         """
-        Returns a DataFrame where the specified columns data types are changed to the specified data type
+        Returns a DataFrame where the specified columns data types are changed
+        to the specified data type
+
         Parameters
-        ----------
+        =--------=
         cols:
             Type: list
         data_type:
             Type: str
+
         Returns
-        -------
+        =-----=
         pd.DataFrame
         """
         try:
             for col in cols:
                 df[col] = df[col].astype(data_type)
-                self.logger.info(f"Successfully changed column: {col} type to {data_type}")
+                self.logger.info(
+                    f"Successfully changed column: {col} type to {data_type}")
         except Exception as e:
             self.logger.error(e, trace_info=True)
             print(e, 'Failed to change columns type')
@@ -944,7 +983,7 @@ class dataCleaner():
                         # downcast an integer column
                         df[col] = pd.to_numeric(
                             df[col], downcast='unsigned')
-            self.logger.info(f"DataFrame optimized")
+            self.logger.info("DataFrame optimized")
             print("DataFrame optimized")
         except Exception as e:
             self.logger.error(e, trace_info=True)
