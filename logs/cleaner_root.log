@@ -101,3 +101,27 @@
 [2022-10-21 16:21:51,157] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819 % missing values]
 [2022-10-21 16:22:11,580] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
 [2022-10-21 16:22:11,761] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-21 23:01:33,785] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-21 23:02:18,963] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-21 23:02:19,076] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-21 23:02:20,882] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-21 23:02:21,210] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-21 23:02:21,628] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-21 23:02:22,065] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-21 23:06:26,069] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819% missing values]
+[2022-10-21 23:06:51,140] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-21 23:06:51,202] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-21 23:11:11,644] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-21 23:11:22,651] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-21 23:11:22,725] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-21 23:11:23,997] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-21 23:11:24,299] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-21 23:11:24,605] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-21 23:11:24,923] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-21 23:14:30,360] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819% missing values]
+[2022-10-21 23:14:54,744] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-21 23:14:54,803] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
