@@ -183,7 +183,8 @@ class generalHelper():
     def add_holiday_feature(self, df: pd.DataFrame,
                             date_col: str = "Trip Start Date"):
         try:
-            df["Holiday"] = df[date_col].apply(lambda x: self.check_for_holiday(x))
+            df["Holiday"] = df[date_col].apply(
+                lambda x: self.check_for_holiday(x))
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
