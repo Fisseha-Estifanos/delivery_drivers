@@ -33,7 +33,7 @@ class generalHelper():
         try:
             # setting up logger
             self.logger = self.setup_logger(defs.log_path +
-                                            'genera_helper_root.log')
+                                            'general_helper_root.log')
             self.logger.info('\n    #####-->    General helper ' +
                              f'logger for {fromThe}    <--#####\n')
             print('General helper in action')
@@ -151,5 +151,5 @@ class generalHelper():
             return ng_holidays.get(date)
         except Exception as e:
             self.logger.error(e, exec_info=True)
-            print(e)
+            # print(e)
             return 'None'
