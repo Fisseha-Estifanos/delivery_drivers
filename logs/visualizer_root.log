@@ -109,3 +109,12 @@
 [2022-10-22 16:52:48,797] [dataVisualizer] [__init__] [INFO] --> [
     #####-->    Data visualizer logger for EDA notebook    <--#####
 ]
+[2022-10-22 17:02:01,310] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
+[2022-10-22 17:09:48,388] [dataVisualizer] [plot_bar] [INFO] --> [setting up bar plot]
+[2022-10-22 17:10:51,972] [dataVisualizer] [plot_bar] [INFO] --> [setting up bar plot]
+[2022-10-22 17:10:52,641] [dataVisualizer] [plot_bar] [INFO] --> [Order Id count bar plot plotted successfully]
+[2022-10-22 17:11:46,631] [dataVisualizer] [plot_hist] [INFO] --> [setting up distribution plot]
+[2022-10-22 17:11:48,446] [dataVisualizer] [plot_hist] [INFO] --> [order_id hist plot plotted successfully]
+[2022-10-22 17:12:10,909] [dataVisualizer] [plot_count] [INFO] --> [setting up count plot]
+[2022-10-22 17:12:10,976] [dataVisualizer] [plot_count] [INFO] --> [order_id count plot plotted successfully]
+[2022-10-22 17:17:58,212] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
