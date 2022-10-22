@@ -184,3 +184,47 @@
 [2022-10-22 14:02:46,366] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819% missing values]
 [2022-10-22 14:03:37,458] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
 [2022-10-22 14:03:37,713] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-22 14:54:57,483] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 14:54:57,483] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 14:56:42,772] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 14:56:56,311] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-22 14:56:56,422] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-22 14:56:58,598] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-22 14:56:59,200] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-22 14:56:59,927] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-22 14:57:00,536] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-22 15:03:07,191] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819% missing values]
+[2022-10-22 15:03:48,152] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-22 15:03:48,504] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-22 15:16:08,250] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 15:19:48,997] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 15:41:07,905] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 15:43:22,292] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-22 15:43:22,451] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-22 15:53:39,618] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 15:53:45,286] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 15:53:45,286] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 16:45:26,029] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 16:50:18,735] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: id removed successfully]
+[2022-10-22 16:50:18,820] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-22 16:50:18,874] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
