@@ -1,5 +1,5 @@
 """
-A script for distance manipulation.
+A script for General helper.
 """
 
 # imports
@@ -8,22 +8,21 @@ import logging
 import defaults as defs
 import geopy
 import holidays
-import datetime
 
 
 class generalHelper():
     """
-    A distance manipulation class.
+    A General helper class.
     """
 
     def __init__(self, fromThe: str) -> None:
         """
-        The distance manipulation initializer
+        The General helper initializer
 
         Parameters
         =--------=
         fromThe: string
-            The file importing the distance manipulation
+            The file importing the General helper
 
         Returns
         =-----=
@@ -34,10 +33,10 @@ class generalHelper():
         try:
             # setting up logger
             self.logger = self.setup_logger(defs.log_path +
-                                            'geo_root.log')
-            self.logger.info('\n    #####-->    Distance manipulation ' +
-                             'logger for {fromThe}    <--#####\n')
-            print('Distance manipulation in action')
+                                            'genera_helper_root.log')
+            self.logger.info('\n    #####-->    General helper ' +
+                             f'logger for {fromThe}    <--#####\n')
+            print('General helper in action')
         except Exception as e:
             print(e)
 
@@ -127,11 +126,11 @@ class generalHelper():
         try:
             return str(x).split(' ')[1]
         except Exception as e:
-            logger.error(e, exec_info=True)
+            self.logger.error(e, exec_info=True)
             print(e)
             return 'None'
 
-    def check_holiday(self, date: Any, country: str = 'NG') -> str:
+    def check_holiday(self, date: str, country: str = 'NG') -> str:
         """
         A method to get dates
 
@@ -151,6 +150,6 @@ class generalHelper():
         try:
             return ng_holidays.get(date)
         except Exception as e:
-            logger.error(e, exec_info=True)
-            #print(e)
+            self.logger.error(e, exec_info=True)
+            print(e)
             return 'None'
