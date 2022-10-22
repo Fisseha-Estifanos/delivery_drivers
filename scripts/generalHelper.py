@@ -8,6 +8,8 @@ import logging
 import defaults as defs
 import geopy
 import holidays
+import datetime
+import pandas as pd
 
 
 class generalHelper():
@@ -31,6 +33,7 @@ class generalHelper():
             manipulation script.
         """
         try:
+            self.nigeria_holiday = holidays.Nigeria()
             # setting up logger
             self.logger = self.setup_logger(defs.log_path +
                                             'general_helper_root.log')
@@ -146,10 +149,43 @@ class generalHelper():
         str: string
             The holiday or None if there is no holiday
         """
-        ng_holidays = holidays.country_holidays('NG')  # this is a dict
+        ng_holidays = holidays.country_holidays('NG')
         try:
             return ng_holidays.get(date)
         except Exception as e:
             self.logger.error(e, exec_info=True)
-            # print(e)
+            print(e)
             return 'None'
+
+    def check_for_holiday(self, order_time: datetime):
+        """
+        A method to get dates
+
+        Parameters
+        =--------=
+        date: string or datetime
+            The date to check for
+        country: str
+            The country to chekc the holiday
+
+        Returns
+        =-----=
+        str: string
+            The holiday or None if there is no holiday
+        """
+        try:
+            return order_time.date() in self.nigeria_holiday
+        except Exception as e:
+            self.logger.error(e, exec_info=True)
+            print(e)
+            return 'error'
+
+    def add_holiday_feature(self, df: pd.DataFrame,
+                            date_col: str = "Trip Start Date"):
+        try:
+            df["Holiday"] = df[date_col].apply(lambda x: self.check_for_holiday(x))
+        except Exception as e:
+            self.logger.error(e, exec_info=True)
+            print(e)
+        finally:
+            return df
