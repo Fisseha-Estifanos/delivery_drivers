@@ -462,6 +462,36 @@ class dataCleaner():
             self.logger.error(e, exec_info=True)
             print(e)
 
+    def rename_columns(self, df: pd.DataFrame, ids: list,
+                       names=list) -> pd.DataFrame:
+        """
+        A method to rename columns
+
+        Parameters
+        =--------=
+        df: pandas dataframe
+            The main dataframe
+        ids: list
+            The list containing the ids of hte columns to rename
+        names: list
+            The list containing the names of the new columns
+
+        Returns
+        =-----=
+        df: pandas dataframe
+            The renamed data frame
+        """
+        try:
+            for i in range(len(ids)):
+                df.rename(columns={i: names[i]}, inplace=True)
+                print(f'Column: {df.columns[i]} renamed to {names[i]}' +
+                      ' successfully')
+        except Exception as e:
+            self.logger.error(e, exec_info=True)
+            print(e)
+        finally:
+            return df
+
     def missing_values_table(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         A method to calculate missing values by features
