@@ -50,3 +50,20 @@
     #####-->    Data visualizer logger for EDA notebook    <--#####
 ]
 [2022-10-21 23:14:57,266] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
+[2022-10-22 12:24:04,143] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-22 12:30:33,260] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
+[2022-10-22 12:39:07,356] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-22 12:50:07,734] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-22 13:12:31,622] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-22 13:55:12,276] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-22 14:03:41,526] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
