@@ -92,8 +92,8 @@ class dataCleaner():
             # return the logger object
             return logger
 
-    def remove_unwanted_cols(self, df: pd.DataFrame,
-                             cols: list) -> pd.DataFrame:
+    def remove_unwanted_cols(self, df: pd.DataFrame, cols: list,
+                             use_reg_ex: bool = False) -> pd.DataFrame:
         """
         A method to remove unwanted features from a DataFrame
 
@@ -110,10 +110,16 @@ class dataCleaner():
             The dataframe rid of the unwanted cols
         """
         try:
-            for col in cols:
-                df = df[df.columns.drop(list(df.filter(regex=col)))]
-                self.logger.info(f'feature: {col} removed successfully')
-                print(f'feature: {col} removed successfully')
+            if use_reg_ex:
+                for col in cols:
+                    df = df[df.columns.drop(list(df.filter(regex=col)))]
+                    self.logger.info(f'feature: {col} removed successfully')
+                    print(f'feature: {col} removed successfully')
+            else:
+                for col in cols:
+                    df = df[df.columns.drop(col)]
+                    self.logger.info(f'feature: {col} removed successfully')
+                    print(f'feature: {col} removed successfully')
         except Exception as e:
             self.logger.error(e, exec_info=True)
             print(e)
