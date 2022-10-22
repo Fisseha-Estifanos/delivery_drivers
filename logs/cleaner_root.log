@@ -228,3 +228,12 @@
 [2022-10-22 16:50:18,735] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: id removed successfully]
 [2022-10-22 16:50:18,820] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
 [2022-10-22 16:50:18,874] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-22 16:52:06,259] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 16:52:06,259] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-22 16:52:48,787] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
