@@ -130,3 +130,6 @@ dmypy.json
 
 # ml run related ignores
 mlruns
+
+# qucik helpers
+quickHelp.py
