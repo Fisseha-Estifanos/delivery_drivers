@@ -166,7 +166,7 @@ class generalHelper():
         date: string or datetime
             The date to check for
         country: str
-            The country to chekc the holiday
+            The country to check the holiday
 
         Returns
         =-----=
