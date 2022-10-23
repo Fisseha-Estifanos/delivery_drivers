@@ -133,3 +133,6 @@ mlruns
 
 # qucik helpers
 quickHelp.py
+
+# vscode realted ignores
+.vscode
