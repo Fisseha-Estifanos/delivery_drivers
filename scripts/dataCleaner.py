@@ -11,6 +11,7 @@ import defaults as defs
 from sklearn.cluster import KMeans
 from scipy.spatial.distance import cdist
 from sklearn import preprocessing
+import datetime
 
 
 class dataCleaner():
@@ -23,12 +24,12 @@ class dataCleaner():
         The data cleaner initializer
 
         Parameters
-        =--------=
+        =======
         fromThe: string
             The file importing the data cleaner
 
         Returns
-        =-----=
+        =======
         None: nothing
             This will return nothing, it just sets up the data cleaner
             script.
@@ -48,12 +49,12 @@ class dataCleaner():
         A method to set up logging
 
         Parameters
-        =--------=
+        =======
         log_path: string
             The path of the file handler for the logger
 
         Returns
-        =-----=
+        =======
         logger: logger
             The final logger that has been setup up
         """
@@ -98,14 +99,14 @@ class dataCleaner():
         A method to remove unwanted features from a DataFrame
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The data frame containing all the data
         cols: list
             The unwanted features lists
 
         Returns
-        =-----=
+        =======
         df
             The dataframe rid of the unwanted cols
         """
@@ -132,12 +133,12 @@ class dataCleaner():
         what is the % of missing values in the dataset?
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The data frame to calculate the missing values from
 
         Returns
-        =-----=
+        =======
         None: nothing
             Just prints the missing value percentage
         """
@@ -169,14 +170,14 @@ class dataCleaner():
         values
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The data frame with the null values
         cols: list
             The list of features to be filled with median values
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The data frame with the null values replace with their
             corresponding median values
@@ -204,14 +205,14 @@ class dataCleaner():
         values
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The data frame with the null values
         cols: list
             The list of features to be filled with mean values
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The data frame with the null values replace with their
             corresponding mean values
@@ -234,14 +235,14 @@ class dataCleaner():
         A method to fix outliers with median
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The data frame containing the outlier features
         column: str
             The string name of the feature with the outlier problem
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The fixed data frame
         """
@@ -265,14 +266,14 @@ class dataCleaner():
         A method to fix outliers with median
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The data frame containing the outlier features
         feature: str
             The string name of the feature with the outlier problem
 
         Returns
-        =-----=
+        =======
         dataFrame: pandas data frame
             The fixed data frame
         """
@@ -313,14 +314,14 @@ class dataCleaner():
         A method to choose the optimal k means cluster
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The data frame that holds all the values
         num: integer
             The x scale
 
         Returns
-        =-----=
+        =======
         distortions and inertias
         """
         try:
@@ -349,7 +350,7 @@ class dataCleaner():
         A method that gives some basic description of the 3 clusters
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The main data frame containing all the data
         cluster_col: str
@@ -360,7 +361,7 @@ class dataCleaner():
             The feature list on which to provide description
 
         Returns
-        =-----=
+        =======
         None: nothing
             This function only prints out information
         """
@@ -388,14 +389,14 @@ class dataCleaner():
         A method to fill missing values with the ffill method
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         cols: list
             A list containing the missing values
 
         Returns
-        =-----=
+        =======
         None: nothing
             Just fills the missing values
         """
@@ -431,14 +432,14 @@ class dataCleaner():
         A method to fill missing values with the bfill method
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         cols: list
             A list containing the missing values
 
         Returns
-        =-----=
+        =======
         None: nothing
             Just fills the missing values
         """
@@ -474,7 +475,7 @@ class dataCleaner():
         A method to rename columns
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         ids: list
@@ -483,7 +484,7 @@ class dataCleaner():
             The list containing the names of the new columns
 
         Returns
-        =-----=
+        =======
         df: pandas dataframe
             The renamed data frame
         """
@@ -503,12 +504,12 @@ class dataCleaner():
         A method to calculate missing values by features
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
 
         Returns
-        =-----=
+        =======
         mis_val_table_ren_columns: pandas data frame
             The data frame containing missing value information
         """
@@ -562,7 +563,7 @@ class dataCleaner():
         A method to fix missing values by a given value
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         cols: list
@@ -571,7 +572,7 @@ class dataCleaner():
             The value to fill the missing values with
 
         Returns
-        =-----=
+        =======
         None: noting
             Just fills the missing value with a given value
         """
@@ -601,7 +602,7 @@ class dataCleaner():
         A method to fill missing values using the rolling method
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The main data frame
         cols: list
@@ -613,7 +614,7 @@ class dataCleaner():
             The minimum value to use for the rolling method
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The same data frame with the missing values filled using the
             rolling method
@@ -639,14 +640,14 @@ class dataCleaner():
         A method to convert features to string data type
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         columns: list
             List of features to be converted to string data types
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The converted data frame
         """
@@ -668,14 +669,14 @@ class dataCleaner():
         A method to convert features to numeric data type
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         columns: list
             List of features to be converted to numeric data types
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The converted data frame
         """
@@ -696,14 +697,14 @@ class dataCleaner():
         A method to convert features to integer data type
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         columns: list
             List of features to be converted to integer data types
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The converted data frame
         """
@@ -725,14 +726,14 @@ class dataCleaner():
         A method to convert features to datetime data type
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         columns: list
             List of features to be converted to datetime data types
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The converted data frame
         """
@@ -754,7 +755,7 @@ class dataCleaner():
         A method that multiplies a features by a given factor
 
         Parameters
-        =--------=
+        =======
         df: pandas dataframe
             The main dataframe
         columns: list
@@ -763,7 +764,7 @@ class dataCleaner():
             The multiplying factor
 
         Returns
-        =-----=
+        =======
         df: pandas data frame
             The multiplied data frame
         """
@@ -784,12 +785,12 @@ class dataCleaner():
         A method to show mixed data types
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The main data frame
 
         Returns
-        =-----=
+        =======
         None: nothing
             Just prints the mixed data types
         """
@@ -815,12 +816,12 @@ class dataCleaner():
         A method to drop duplicates
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The main data frame
 
         Returns
-        =-----=
+        =======
         None: nothing
             Just drops duplicates from the data set
         """
@@ -845,13 +846,13 @@ class dataCleaner():
         A method to return the index of a given month
 
         Parameters
-        =--------=
+        ==========
         month_lits: list
             List of months
         index: int
             The index of the required grouping
         Returns
-        =-----=
+        =======
         months.index: int
             The index of the given month
         """
@@ -863,10 +864,36 @@ class dataCleaner():
             self.logger.info('month index calculated for the month: ' +
                              f'{month}. Value: {months.index(month)}')
         except Exception as e:
-            self.logger.error(e, exec_info=True)
+            self.logger.error(e, exec_info=True)  # type: ignore
             print(e)
         finally:
             return months.index(month)
+
+    def isWeekend(self, df_date_str:str) -> int:
+        """
+        A method to determine if its a weekend or not
+
+        Parameters
+        ==========
+        df_date_str: string
+            The date to check
+
+        Returns
+        =======
+        0 or 1 depending on the day of the week
+        """
+        try:
+            # 2021-07-01 07:28:04
+            #datetime_object = datetime.strptime(df_date_str,
+                                                #'%Y-%m-%d %H:%M:%S')
+            if df_date_str.weekday() < 5:
+                return 0
+            else:  # 5 Sat, 6 Sun
+                return 1
+        except Exception as e:
+            # self.logger.error(e, exec_info=True)
+            self.logger.error(e)
+            # print(e)
 
     def encode_to_numeric(self, data: pd.DataFrame,
                           columns: list) -> pd.DataFrame:
@@ -874,14 +901,14 @@ class dataCleaner():
         A method to change categorical variables to numerical value
 
         Parameters
-        =--------=
+        =======
         data: pandas data frame
             The main data frame
         columns: list
             The list of features to be label encoded
 
         Returns
-        =-----=
+        =======
         data: pandas dataframe
             The data frame with selected features label encoded
         """
@@ -903,7 +930,7 @@ class dataCleaner():
         A method to save data frames to file
 
         Parameters
-        =--------=
+        =======
         df: pandas data frame
             The data frame to save
         path: string
@@ -914,7 +941,7 @@ class dataCleaner():
             Whether the file to be saved will have an index or not
 
         Returns
-        =-----=
+        =======
         None: nothing
             Just saves the data frame to file
         """
@@ -974,14 +1001,14 @@ class dataCleaner():
         to the specified data type
 
         Parameters
-        =--------=
+        =======
         cols:
             Type: list
         data_type:
             Type: str
 
         Returns
-        =-----=
+        =======
         pd.DataFrame
         """
         try:
