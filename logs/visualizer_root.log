@@ -118,3 +118,32 @@
 [2022-10-22 17:12:10,909] [dataVisualizer] [plot_count] [INFO] --> [setting up count plot]
 [2022-10-22 17:12:10,976] [dataVisualizer] [plot_count] [INFO] --> [order_id count plot plotted successfully]
 [2022-10-22 17:17:58,212] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
+[2022-10-23 16:33:34,183] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-23 16:38:05,745] [dataVisualizer] [plot_pie] [INFO] --> [driver actions pie plot plotted successfully]
+[2022-10-23 16:46:25,633] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-23 16:46:49,651] [dataVisualizer] [plot_count] [INFO] --> [setting up count plot]
+[2022-10-23 16:46:49,873] [dataVisualizer] [plot_count] [INFO] --> [Holiday count plot plotted successfully]
+[2022-10-23 16:51:26,782] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-23 16:51:43,464] [dataVisualizer] [plot_count] [INFO] --> [setting up count plot]
+[2022-10-23 16:51:43,596] [dataVisualizer] [plot_count] [INFO] --> [Holiday count plot plotted successfully]
+[2022-10-23 16:57:39,524] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-23 16:57:59,752] [dataVisualizer] [plot_count] [INFO] --> [setting up count plot]
+[2022-10-23 16:57:59,883] [dataVisualizer] [plot_count] [INFO] --> [Holiday count plot plotted successfully]
+[2022-10-23 17:22:12,250] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-23 17:22:36,540] [dataVisualizer] [__init__] [INFO] --> [
+    #####-->    Data visualizer logger for EDA notebook    <--#####
+]
+[2022-10-23 17:22:55,436] [dataVisualizer] [plot_count] [INFO] --> [setting up count plot]
+[2022-10-23 17:22:55,801] [dataVisualizer] [plot_count] [INFO] --> [Holiday count plot plotted successfully]
+[2022-10-23 17:23:05,358] [dataVisualizer] [plot_count] [INFO] --> [setting up count plot]
+[2022-10-23 17:23:05,490] [dataVisualizer] [plot_count] [INFO] --> [Weekend count plot plotted successfully]
