@@ -239,3 +239,30 @@
 ]
 [2022-10-22 17:01:42,048] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
 [2022-10-22 17:01:42,171] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-23 16:33:34,169] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-23 16:33:47,467] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Origin removed successfully]
+[2022-10-23 16:33:47,575] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: Trip Destination removed successfully]
+[2022-10-23 16:33:49,478] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lat converted to numeric data type format]
+[2022-10-23 16:33:49,935] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Origin_lon converted to numeric data type format]
+[2022-10-23 16:33:50,216] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lat converted to numeric data type format]
+[2022-10-23 16:33:50,462] [dataCleaner] [convert_to_numeric] [INFO] --> [feature: Trip_Destination_lon converted to numeric data type format]
+[2022-10-23 16:37:06,958] [dataCleaner] [percent_missing] [INFO] --> [The dataset contains 0.0385246819% missing values]
+[2022-10-23 16:38:02,902] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: created_at removed successfully]
+[2022-10-23 16:38:03,012] [dataCleaner] [remove_unwanted_cols] [INFO] --> [feature: updated_at removed successfully]
+[2022-10-23 16:46:25,620] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-23 16:51:26,771] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-23 16:57:39,507] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-23 17:22:12,238] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
+[2022-10-23 17:22:36,531] [dataCleaner] [__init__] [INFO] --> [
+    #####-->    Data cleaner logger for EDA notebook    <--#####
+]
